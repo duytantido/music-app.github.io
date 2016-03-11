@@ -1,0 +1,311 @@
+@import "normalize"
+
+html
+  height: 100%
+
+body
+  background: #363e50
+  min-height: 100%
+  height: 100%
+
+  &.active
+    svg
+      &.play
+        display: block
+      &.pause
+        display: none
+
+    .i-player
+      transition: all .3s cubic-bezier(0.79, 0.21, 0.48, 0.81)
+      &::before, &::after
+        transition: all .3s cubic-bezier(0.79, 0.21, 0.48, 0.81)
+
+
+    .pause
+      opacity: 0
+      visibility: hidden
+      display: none
+
+    .i-player
+      background: #65ADBF
+      -webkit-animation: zoom  1s linear infinite
+      -moz-animation: zoom  1s linear infinite
+      animation: zoom  1s cubic-bezier(0.79, 0.21, 0.48, 0.81)  infinite
+
+      &::before
+        background: #5CA5B7
+      &::after
+        background: rgba(62, 133, 150, 0.25)
+
+      &::before, &::after
+        animation: zoom1 1s cubic-bezier(0.79, 0.21, 0.48, 0.81)  infinite
+
+
+    .spin
+      -webkit-animation: spin-cw  7s linear infinite
+      -moz-animation: spin-cw  7s linear infinite
+      animation: spin-cw  7s cubic-bezier(0.79, 0.21, 0.48, 0.81)  infinite
+
+      &::before
+        -webkit-animation: spin-cw  5s linear infinite
+        -moz-animation: spin-cw  5s linear infinite
+        animation: spin-cw  5s linear infinite
+
+      &::after
+        -webkit-animation: spin-cw  2s linear infinite
+        -moz-animation: spin-cw  2s linear infinite
+        animation: spin-cw  2s linear infinite
+
+.wrap
+  width: 100%
+  height: 100%
+  display: flex
+  justify-content: column
+  flex-direction: center
+
+
+.player
+  width: 100%
+  max-width: 360px
+  height: 90%
+  min-height: 600px
+  margin: auto
+  background: #549fb2
+  border-radius: 5px
+  overflow: hidden
+
+.w-player
+  height: 300px
+  width: 300px
+  border-radius: 50%
+  margin: 100px auto
+  position: relative
+
+.i-player
+  height: 300px
+  width: 300px
+  border-radius: 50%
+  border: 4px solid #55a1b0
+  position: absolute
+  box-shadow: 0px 0px 2px rgb(43, 131, 132)
+  z-index: 1
+  background: transparent
+  transition: all .3s linear
+
+  &::before, &::after
+    content: ""
+    display: block
+    position: absolute
+    border-radius: 50%
+    background: transparent
+    transition: all .3s linear
+
+  &::before
+    height: 267px
+    width: 267px
+    border: 4px solid #6EC0C7
+    top: 50%
+    left: 50%
+    margin-left: -137px
+    margin-top: -137px
+    box-shadow: 0px 0px 2px rgb(43, 131, 132)
+
+  &::after
+    height: 234px
+    width: 234px
+    border: 4px solid #52b5b5
+    top: 50%
+    left: 50%
+    margin-left: -120px
+    margin-top: -120px
+    box-shadow: 0px 0px 2px rgb(43, 131, 132)
+
+
+.ctn-play
+  width: 200px
+  height: 200px
+  margin-left: -95px
+  margin-top: -95px
+  position: absolute
+  border-radius: 50%
+  top: 50%
+  left: 50%
+  z-index: 10
+
+  svg
+    font-size: 50px
+    position: absolute
+    top: 50%
+    left: 50%
+    margin-left: -25px
+    margin-top: -25px
+
+    &.play
+      display: none
+
+.spin
+  width: 200px
+  height: 200px
+  background: #4485a3
+  border-radius: 50%
+  margin-left: -95px
+  margin-top: -95px
+  position: absolute
+  top: 50%
+  left: 50%
+  cursor: pointer
+  z-index: 2
+  box-shadow: 0px 0px 2px 1px rgba(0,0,0,.5)
+
+  &.sound
+    -webkit-animation: sound 1.5s cubic-bezier(0.79, 0.21, 0.48, 0.81),
+    spin-cw 7s cubic-bezier(0.79, 0.21, 0.48, 0.81) infinite !important
+    animation: sound 1.5s cubic-bezier(0.79, 0.21, 0.48, 0.81),
+    spin-cw 7s cubic-bezier(0.79, 0.21, 0.48, 0.81) infinite !important
+
+
+  &::before, &::after
+    content: ""
+    display: block
+    position: absolute
+    border-radius: 60%
+    transition: all .3s linear
+    animation: spin-cw 15s cubic-bezier(0.79, 0.21, 0.48, 0.81)  infinite
+
+  &::before
+    height: 160px
+    width: 160px
+    top: 19px
+    left: 19px
+    border: 2px solid
+    border-color: transparent transparent #42ffd4 #42ffd4
+
+
+  &::after
+    height: 140px
+    width: 140px
+    top: 29px
+    left: 29px
+    border: 2px solid
+    border-color: #42ffd4 transparent  transparent #42ffd4
+
+@keyframes spin-cw
+  from
+    -webkit-transform: rotate(0deg)
+    -moz-transform: rotate(0deg)
+    -ms-transform: rotate(0deg)
+    -o-transform: rotate(0deg)
+    transform: rotate(0deg)
+
+
+  to
+    -webkit-transform: rotate(360deg)
+    -moz-transform: rotate(360deg)
+    -ms-transform: rotate(360deg)
+    -o-transform: rotate(360deg)
+    transform: rotate(360deg)
+
+@-webkit-keyframes spin-ccw
+  from
+    -webkit-transform: rotate(360deg)
+
+  to
+    -webkit-transform: rotate(0deg)
+
+@-moz-keyframes spin-ccw
+  from
+    -moz-transform: rotate(360deg)
+
+  to
+    -moz-transform: rotate(0deg)
+
+
+@keyframes zoom
+  from
+    -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1)
+    -moz-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1)
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1)
+    -webkit-transform: scale(.9)
+    -moz-transform: scale(.9)
+    transform: scale(.9)
+  to
+    -webkit-box-shadow: 0 0 1px 24px rgba(0, 0, 0, 0.05)
+    -moz-box-shadow: 0 0 1px 24px rgba(0, 0, 0, 0.05)
+    box-shadow: 0 0 1px 24px rgba(0, 0, 0, 0.05)
+    -webkit-transform: scale(1)
+    -moz-transform: scale(1)
+    transform: scale(1)
+
+@keyframes zoom1
+  from
+    -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.08)
+    -moz-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.08)
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.08)
+  to
+    -webkit-box-shadow: 0 0 50px 5px rgba(0, 0, 0, 0.1)
+    -moz-box-shadow: 0 0 50px 5px rgba(0, 0, 0, 0.1)
+    box-shadow: 0 0 50px 5px rgba(0, 0, 0, 0.1)
+
+@keyframes sound
+  0%
+    transform: scale(.91)
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,.5)
+  10%
+    transform: scale(.95)
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,.5)
+
+  15%
+    transform: scale(.9)
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,.5)
+  20%
+    transform: scale(.94)
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,.5)
+  25%
+    transform: scale(.89)
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,.5)
+  30%
+    transform: scale(.95)
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,.5)
+  50%
+    transform: scale(.95)
+    box-shadow: 0px 0px 2px 100px rgba(0,0,0,.5)
+  70%
+    transform: scale(.96)
+    box-shadow: 0px 0px 2px 200px rgba(0,0,0,.1)
+  75%
+    transform: scale(.98)
+    box-shadow: 0px 0px 2px 300px rgba(0,0,0,.05)
+  80%
+    transform: scale(.99)
+    box-shadow: 0px 0px 2px 200px rgba(0,0,0,.05)
+  85%
+    transform: scale(.995)
+    box-shadow: 0px 0px 2px 150px rgba(0,0,0,.05)
+  90%
+    transform: scale(.995)
+    box-shadow: 0px 0px 2px 100px rgba(0,0,0,.1)
+  95%
+    transform: scale(.995)
+    box-shadow: 0px 0px 2px 80px rgba(0,0,0,.2)
+  95%
+    transform: scale(.995)
+    box-shadow: 0px 0px 2px 80px rgba(0,0,0,.3)
+  100%
+    transform: scale(1)
+    box-shadow: 0px 0px 2px 1 rgba(0,0,0,.4)
+
+
+.svg-icon
+  width: 1em
+  height: 1em
+
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect
+  fill: #42ffd4
+
+
+.svg-icon circle
+  stroke: #42ffd4
+  stroke-width: 1
